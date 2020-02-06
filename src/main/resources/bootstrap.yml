@@ -1,0 +1,33 @@
+---
+# spring
+spring:
+  application:
+    name: kafka
+
+# configuracoes de log
+logging:
+  level:
+    root: INFO
+    org.springframework.cache: ERROR
+
+management:
+  server:
+    port: 9090
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+      base-path: /
+      path-mapping:
+        prometheus: metrics
+        metrics: metric
+  endpoint:
+    health:
+      enabled: true
+    info:
+      enabled: true
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true

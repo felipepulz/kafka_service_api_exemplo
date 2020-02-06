@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook" />
+
+    <springProfile name="logstash">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                    <rootCauseFirst>true</rootCauseFirst>
+                    <maxDepthPerThrowable>100</maxDepthPerThrowable>
+                    <exclude>io\.undertow\.servlet\..*</exclude>
+                    <exclude>io\.undertow\.security\..*</exclude>
+                    <exclude>org\.springframework\.security\.web\.FilterChainProxy.*</exclude>
+                    <exclude>org\.springframework\.aop\.framework\..*</exclude>
+                    <exclude>com\.sun\.xml\.ws.*</exclude>
+                    <exclude>javax\.servlet\..*</exclude>
+                    <exclude>java\.lang\.reflect\.Method\.invoke</exclude>
+                    <exclude>sun\.reflect\..*\.invoke.*</exclude>
+                </throwableConverter>
+            </encoder>
+        </appender>
+    </springProfile>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

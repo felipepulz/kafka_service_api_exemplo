@@ -1,0 +1,43 @@
+---
+#server
+server:
+  compression:
+    enabled: true
+  connection-timeout: 15s
+  undertow:
+    worker-threads: 128
+    io-threads: 8
+
+# spring
+spring:
+  main.banner-mode: "off"
+  jackson.serialization.fail-on-empty-beans: false
+  jmx.enabled: false
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVERS:127.0.0.1:9092}
+    listener:
+      ack-mode: record
+    producer:
+      acks: all
+      retries: 5
+      compression-type: snappy
+
+# configuracoes do swagger
+springfox:
+  documentation:
+    swagger.v2.path: /swagger.json
+    info.version: @project.version@
+
+#configuracoes da aplicacao
+app:
+  kafka:
+    topics:
+      my-kafka: KAFKA.EXEMPLE
+
+---
+logging:
+  level:
+    org.apache.kafka: error
+    org.springframework:
+      boot.context: trace
+      cache: error
