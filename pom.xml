@@ -19,7 +19,7 @@
         <k8s-name>${project.name}</k8s-name>
         <k8s.majorVersion>v1</k8s.majorVersion>
         <java.version>11</java.version>
-        <version.h2>1.4.194</version.h2>
+        <version.h2>2.1.210</version.h2>
         <version.asm>7.0</version.asm>
         <version.mapstruct-processor>1.3.0.Final</version.mapstruct-processor>
         <springfox.version>2.9.2</springfox.version>
